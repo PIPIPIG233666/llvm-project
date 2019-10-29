@@ -333,6 +333,9 @@ private:
   /// toolchains.
   llvm::DenseMap<const ToolChain *, llvm::DenseSet<llvm::StringRef>> KnownArchs;
 
+  /// Number of parallel jobs.
+  unsigned NumParallelJobs;
+
 private:
   /// TranslateInputArgs - Create a new derived argument list from the input
   /// arguments, after applying the standard argument translations.
@@ -704,6 +707,12 @@ public:
   LTOKind getLTOMode(bool IsOffload = false) const {
     return IsOffload ? OffloadLTOMode : LTOMode;
   }
+
+  /// Get the number of parallel jobs.
+  unsigned getNumberOfParallelJobs() const { return NumParallelJobs; }
+
+  /// Set the number of parallel jobs.
+  void setNumberOfParallelJobs(unsigned N) { NumParallelJobs = N; }
 
 private:
 
